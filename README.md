@@ -1,1 +1,1 @@
-These are the codes that make up the game "PacMan". I used a tutorial from youtuber Kenny Yip Coding. I had the idea to make the game, I had some problems so I looked into the tutorial for some answers. I evetually found the answer. I used AI to solve side issues like the ghosts not moving. Here's the link to the Youtuber: https://www.youtube.com/watch?v=WxeTMsaSOaA
+This project is called "PACMAN" it is a recreation of the Original Game Of Pacman. To run the code you need to open the demo url and it will automatically run the game.

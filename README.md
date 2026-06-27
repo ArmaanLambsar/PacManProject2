@@ -1,1 +1,1 @@
-This project is called "PACMAN" it is a recreation of the Original Game Of Pacman. To run the code you need to open the demo url and it will automatically run the game.
+This project is called "PACMAN" it is a recreation of the Original Game Of Pacman. To run the code you need to open the demo url and it will automatically run the game. It is a simple easy to play game.

@@ -25,6 +25,11 @@ window.onload = function() {
     context = board.getContext("2d"); //used for drawing on the board
 
     loadImages();
+    loadMap();
+    // console.log(walls.size);
+    // console.log(foods.size);
+    // console.log(ghosts.size);
+    update();
 }
 
 //X = wall, O = skip, P = pac man, ' ' = food
@@ -53,6 +58,11 @@ const tileMap = [
     "XXXXXXXXXXXXXXXXXXX" 
 ];
 
+const walls = new Set();
+const foods = new Set();
+const ghosts = new Set();
+let pacman;
+
 function loadImages() {
     wallimage = new Image();
     wallImage.src = "./wall.png";
@@ -74,7 +84,50 @@ function loadImages() {
     pacmanLeftImage.src = "./pacmanLeft.png";
     pacmanRightImage = new Image();
     pacmanRightImage.src = "./pacmanRight.png";
-    
+}
+
+function loadMap() {
+    walls.clear();
+    foods.clear();
+    ghosts.clear();
+
+    for (let r = 0; r < rowCount; r++) {
+        for (let c = 0 ; c < columnCount; c++) {
+            const row = tileMap [r];
+            const tileMapChar = row[c];
+
+            const x = c*tileSize;
+            const y = r*tileSize;
+
+            if (tileMapChar == 'X') { //block wall
+                const wall = new Block(wallImage, x, y, tileSize, tileSize);
+                walls.add(wall);
+            }
+            else if(tileMapChar == 'b') { //blue ghost
+                const ghost = new Block (blueGhostImage, x, y, tileSize, tileSize);
+                ghosts.add(ghost);
+            }
+                        else if(tileMapChar == 'o') { //orange ghost
+                const ghost = new Block (orangeGhostImage, x, y, tileSize, tileSize);
+                ghosts.add(ghost);
+            }
+                        else if(tileMapChar == 'p') { //pink ghost
+                const ghost = new Block (pinkGhostImage, x, y, tileSize, tileSize);
+                ghosts.add(ghost);
+            }
+                        else if(tileMapChar == 'r') { //red ghost
+                const ghost = new Block (redGhostImage, x, y, tileSize, tileSize);
+                ghosts.add(ghost);
+            }
+            else if (tileMapChar == 'P') { //pacman
+                pacman = new Block(pacmanRightImage, x, y, tileSize, tileSize);
+            }
+            else if (tileMapChar == ' ') { //empty is food
+                const food = new Block(null, x + 14, y + 14, 4, 4);
+                foods.add(food);
+            }
+        }
+    }
 }
 
 class Block {
@@ -83,6 +136,9 @@ class Block {
         this.x = x;
         this.y = y;
         this.width = width;
-        this.height = 
+        this.height = height;
+
+        this.startX = x;
+        this.startY = y;
     }
 }
